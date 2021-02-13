@@ -8,8 +8,6 @@ exports.up = function(knex) {
             .unique();
         tbl.string("location")
         tbl.string("headmaster")
-            .notNullable()
-            .unique();
     })
 
     .createTable("houses", tbl => {
