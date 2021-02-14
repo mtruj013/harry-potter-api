@@ -1,7 +1,9 @@
-const server = require('api/server.js');
+const express = require("express");
+const helmet = require("helmet");
 
-const PORT = process.env.PORT || 4000;
+const server = express();
 
-server.listen(PORT, () => {
-    console.log(`\n=== Server listening on port ${PORT} ===\n`)
-})
+server.use(helmet());
+server.use(express.json());
+
+module.exports = server;
