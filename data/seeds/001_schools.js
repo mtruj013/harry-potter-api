@@ -21,6 +21,5 @@ exports.seed = function (knex) {
           headmaster: "Olympe Maxime"
         }
       ]);
-
     });
 };
