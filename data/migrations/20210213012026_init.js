@@ -18,10 +18,8 @@ exports.up = function(knex) {
         tbl.string("founder")
             .notNullable()
         tbl.string("house_head")
-            .notNullable()
             .unique();
         tbl.string("common_room")
-            .notNullable()
             .unique()
         tbl.string("traits")
         tbl.string("house_ghost")
