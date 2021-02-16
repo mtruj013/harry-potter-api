@@ -6,7 +6,7 @@ exports.seed = function(knex) {
       // Inserts seed entries
       return knex('members').insert([
         {
-          name:"Harry Potter",
+          member_name:"Harry Potter",
           blood_status:"half-blood",
           wand: "11', Holly, phoenix feather",
           nationality: "British",
@@ -17,7 +17,7 @@ exports.seed = function(knex) {
           house_id: 1
         },
         {
-          name:"Luna Lovegood",
+          member_name:"Luna Lovegood",
           blood_status:"half-blood",
           nationality: "British",
           species: "human",

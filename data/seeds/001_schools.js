@@ -6,17 +6,17 @@ exports.seed = function (knex) {
       // Inserts seed entries
       return knex('schools').insert([
         {
-          name: "Hogwarts School of Witchcraft and Wizadry",
+          school_name: "Hogwarts School of Witchcraft and Wizadry",
           location: "Hogwarts Castle, HIghlands, Scotland, Great Britain",
           headmaster: "Minerva McGonagall"
         },
         {
-          name: "Ilvermony School of Wicthcraft and Wizardry",
+          school_name: "Ilvermony School of Wicthcraft and Wizardry",
           location: "Mount Greylock, Massachusetts, United States of America, North America",
           headmaster: "Agilbert Fontaine"
         },
         {
-          name: "Beauxbatons Academy of Magic",
+          school_name: "Beauxbatons Academy of Magic",
           location: "French Pyrenees",
           headmaster: "Olympe Maxime"
         }
