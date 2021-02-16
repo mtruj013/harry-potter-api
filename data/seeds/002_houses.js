@@ -7,7 +7,7 @@ exports.seed = function(knex) {
       return knex('houses').insert([
         {
           school_id : 1,
-          name: "Gryffindor",
+          house_name: "Gryffindor",
           founder: "Godric Gryffiindor",
           common_room: "Gryffindor Tower",
           traits: "Courage, Bravery, Determination, Daring, Nerve, Chivalry",
@@ -17,7 +17,7 @@ exports.seed = function(knex) {
         },
         {
           school_id : 1,
-          name: "Ravenclaw",
+          house_name: "Ravenclaw",
           founder: "Rowena Ravenclaw",
           common_room: "Ravenclaw Tower",
           traits: "Wit, Learning, Wisdom, Acceptance, Intelligence, Creativity",
@@ -28,7 +28,7 @@ exports.seed = function(knex) {
         },
         {
           school_id : 2,
-          name: "Thunderbird",
+          house_name: "Thunderbird",
           founder: "Chadwick Boot",
           traits: "Soul, Adventure",
           house_element: "Soul",

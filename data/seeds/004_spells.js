@@ -6,12 +6,12 @@ exports.seed = function(knex) {
       // Inserts seed entries
       return knex('spells').insert([
         {
-          name: "Stunning Spell",
+          spell_name: "Stunning Spell",
           type: "Charm",
           description: "Knocks out target"
         },
         {
-          name: "Accio",
+          spell_name: "Accio",
           type: "Charm",
           description: "Sommons an object"
         }
