@@ -3,16 +3,15 @@ exports.up = function(knex) {
     return knex.schema
     .createTable("schools", tbl => {
         tbl.increments(); // for primary key
-        tbl.string("name")
-            .notNullable()
-            .unique();
+        tbl.string("school_name")
+            .notNullable();
         tbl.string("location")
         tbl.string("headmaster")
     })
 
     .createTable("houses", tbl => {
         tbl.increments();
-        tbl.string("name")
+        tbl.string("house_name")
             .notNullable()
             .unique();
         tbl.string("founder")
@@ -36,7 +35,7 @@ exports.up = function(knex) {
 
     .createTable("members", tbl => {
         tbl.increments();
-        tbl.string("name")
+        tbl.string("member_name")
             .notNullable()
             .unique();
         tbl.string("blood_status")
@@ -58,7 +57,7 @@ exports.up = function(knex) {
 
     .createTable("spells", tbl => {
         tbl.increments();
-        tbl.string("name")
+        tbl.string("spell_name")
             .notNullable()
             .unique();
         tbl.string("type")
