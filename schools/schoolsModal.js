@@ -26,7 +26,7 @@ function findSchoolById(id) {
 function findSchoolByName(school) {
     return db("schools")
         .select("*")
-        .where( "school_name", "like", `%${school}%`)
+        .where( "school_name", "ilike", `%${school}%`)
         .first()
 }
 
