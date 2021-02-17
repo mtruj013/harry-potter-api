@@ -79,7 +79,7 @@ router.post("/add_house", (req,res) => {
 })
 
 // update house
-router.put("/:id/house", (req,res) => {
+router.put("/:id/update", (req,res) => {
     const changes = req.body;
 
     const house_id = req.params.id;
@@ -115,7 +115,7 @@ router.delete("/:id/delete", (req,res) => {
             if(deleted){
                 res.json({removed: deleted})
             } else {
-                res.json(404)
+                res.status(404)
                     .json({ message: "Unable to find house by that id" })
             }
         })
