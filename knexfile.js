@@ -40,7 +40,10 @@ module.exports = {
   testing: {
     client: "pg",
     connection: {
-      filname: ":memory:"
+      filename: ":memory:",
+      database: 'hp_db',
+      user:     'postgres',
+      password: process.env.DB_PASSWORD,
     },
     migrations: {
       directory: "./data/migrations"

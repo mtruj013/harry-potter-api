@@ -23,10 +23,11 @@ function findSchoolById(id) {
 }
 
 
-function findSchoolByName(name) {
+function findSchoolByName(school) {
     return db("schools")
-    .where({ name }, name)
-    .first()
+        .select("*")
+        .where( "school_name", "like", `%${school}%`)
+        .first()
 }
 
 

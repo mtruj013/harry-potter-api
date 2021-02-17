@@ -36,25 +36,26 @@ router.get("/:id", (req, res) => {
         })
 })
 
-// get school by name
-// router.get("/:name/school", (req,res) => {
-//     const {name} = req.params
+//get school by name
+router.get("/:school/school", (req,res) => {
+    const school = req.params.school
+    console.log(school)
 
-//     Schools.findSchoolByName(name)
-//         .then(schools => {
-//             if (schools) {
-//                 res.json(schools)
-//             } else {
-//                 res.status(404)
-//                 .json({ message: "Unable to find school by that name" })
-//             }
-//         })
-//         .catch(err => {
-//             res.status(500)
-//             console.log(err)
-//                 .json({ message: "Error getting schools" })
-//         })
-//}) 
+    Schools.findSchoolByName(school)
+        .then(schools => {
+            if (schools) {
+                res.json(schools)
+            } else {
+                res.status(404)
+                .json({ message: "Unable to find school by that name" })
+            }
+        })
+        .catch(err => {
+            res.status(500)
+            console.log(err)
+                .json({ message: "Error getting schools" })
+        })
+}) 
 
 
 // get shchool houeses 
