@@ -37,7 +37,6 @@ exports.up = function(knex) {
         tbl.increments();
         tbl.string("member_name")
             .notNullable()
-            .unique();
         tbl.string("blood_status")
             .notNullable();
         tbl.string("wand")
