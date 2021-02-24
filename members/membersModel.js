@@ -5,9 +5,13 @@ module.exports = {
     findMembersByHouse,
     findMemberById,
     findMemberByName,
+    findMemberSpells,
+    findMemberSpellById,
     addMember,
+    addMemberSpell,
     updateMember,
-    deleteMember
+    deleteMember,
+    deleteMemberSpell
 }
 
 function findAllMembers() {
@@ -35,9 +39,29 @@ function findMemberByName(member) {
         .first()
 }
 
+function findMemberSpells(id) {
+    return db("member_spells")
+        .join("members", "members.id", "member_spells.member_id")
+        .join("spells", "member_spells.spell_id", "spells.id")
+        .select("member_spells.id as member_spell_id","spells.spell_name", "spells.description","spells.type","members.member_name")
+        .where("members.id", id)
+}
+
+function findMemberSpellById(spell_id,member_id) {
+    return db("member_spells")
+        .select("*")
+        .where({spell_id: spell_id, member_id: member_id})
+        .first()
+}
+
 function addMember(member) {
     return db("members")
         .insert(member, "id")
+}
+
+function addMemberSpell(member_spell) {
+    return db("member_spells")
+        .insert(member_spell)
 }
 
 function updateMember(changes, id) {
@@ -51,6 +75,12 @@ function updateMember(changes, id) {
 
 function deleteMember(id){
     return db("members")
+        .where({id})
+        .del()
+}
+
+function deleteMemberSpell(id) {
+    return db("member_spells")
         .where({id})
         .del()
 }
