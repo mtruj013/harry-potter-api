@@ -78,6 +78,26 @@ router.get("/:member/member", (req,res) => {
         })
 })
 
+// find member spells
+router.get("/:id/spells", (req,res) => {
+    const {id} = req.params;
+
+    Members.findMemberSpells(id)
+        .then(spells => {
+            if(spells.length) {
+                res.json(spells)
+            } else {
+                res.status(404)
+                .json({ message: "Unable to find spells for that member" })
+            }
+        })
+        .catch(err => {
+            res.status(500)
+            console.log(err)
+                .json({message: "Error getting member spells"})
+        })
+})
+
 //add member
 router.post("/add_member", (req,res) => {
     const {member_name, blood_status, wand, nationality, species, titles, patronus, bogart, house_id} = req.body;
@@ -95,6 +115,39 @@ router.post("/add_member", (req,res) => {
             console.log(err)
             res.status(500)
                 .json({ message: "Unable to add member" })
+        })
+    }
+})
+
+// add member spell
+router.post("/add_member_spell", (req,res) => {
+    const {member_id, spell_id} = req.body;
+
+    if(!member_id || !spell_id){
+        res.status(403)
+            .json({ message: "Please provide a member id and a spell id" })
+    } else {
+        Members.findMemberSpellById(spell_id, member_id)
+        .then(spell => {
+            console.log(spell)
+            if(spell){
+                res.status(409)
+                    .json({ message: "That spell has already been added to this member" })
+            } else {
+                Members.addMemberSpell({ member_id, spell_id })
+                .then(spell => {
+                    res.status(200)
+                        .json({message: "Added spell for member", member_id: member_id, spell_id:spell_id})
+                })
+                .catch(err => {
+                    console.log(err.message)
+                })
+            }
+        })
+        .catch(err => {
+            console.log(err)
+            res.status(500)
+                .json({ message: "Error adding member spell" })
         })
     }
 })
@@ -137,7 +190,7 @@ router.delete("/:id/delete", (req,res) => {
                 res.json({removed: deleted})
             } else {
                 res.status(404)
-                    .json({ message: "Unable to find member t=by that id" })
+                    .json({ message: "Unable to find member by that id" })
             }
         })
         .catch(err => {
@@ -147,4 +200,24 @@ router.delete("/:id/delete", (req,res) => {
         })
 })
 
+
+// delete member spell 
+router.delete("/:id/spell_delete", (req,res) => {
+    const {id} = req.params;
+
+    Members.deleteMemberSpell(id)
+    .then(deleted => {
+        if(deleted){
+            res.json({removed: deleted})
+        } else {
+            res.status(404)
+                .json({ message: "Unable to find member spell by that id" })
+        }
+    })
+    .catch(err => {
+        console.log(err)
+        res.status(500)
+            .json({ message: "Error deleting member spell" })
+    })
+})
 module.exports = router;
