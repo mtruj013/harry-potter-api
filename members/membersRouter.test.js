@@ -51,6 +51,18 @@ test("GET member by name that doesn't exist", async() => {
     expect(res.status).toBe(404)
 })
 
+test("GET member spells success", async() => {
+    const res = await request(server)
+        .get("/api/members/1/spells")
+    expect(res.status).toBe(200)
+})
+
+test("GET member spells by id that doesn't exist", async() => {
+    const res = await request(server)
+        .get("/api/members/9/spells")
+    expect(res.status).toBe(404)
+})
+
 test("POST add member success", async() => {
     const res = await request(server)
         .post("/api/members/add_member")
@@ -62,6 +74,27 @@ test("POST add member failure", async() => {
     const res = await request(server)
         .post("/api/members/add_member")
         .send({ member_name: "test" })
+    expect(res.status).toBe(403)
+})
+
+test("POST new member spell success", async() => {
+    const res = await request(server)
+        .post("/api/members/add_member_spell")
+        .send({ member_id: 2, spell_id: 2 })
+    expect(res.status).toBe(200)
+})
+
+test("POST new member spell that already exists for member", async() => {
+    const res = await request(server)
+        .post("/api/members/add_member_spell")
+        .send({member_id: 1, spell_id:1})
+    expect(res.status).toBe(409)
+})
+
+test("POST new member with missing member id or spell id", async() => {
+    const res = await request(server)
+        .post("/api/members/add_member_spell")
+        .send({member_id: 1})
     expect(res.status).toBe(403)
 })
 
@@ -88,5 +121,17 @@ test("DELETE member success", async() => {
 test("DELETE member that doesn't exist", async() => {
     const res = await request(server)
         .delete("/api/members/8/delete")
+    expect(res.status).toBe(404)
+})
+
+test("DELETE member spell success", async() => {
+    const res = await request(server)
+        .delete("/api/members/2/spell_delete")
+    expect(res.status).toBe(200)
+})
+
+test("DELETE member spell that doesn't exist", async() => {
+    const res = await request(server)
+        .delete("/api/members/9/spell_delete")
     expect(res.status).toBe(404)
 })
