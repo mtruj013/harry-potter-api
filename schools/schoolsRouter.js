@@ -58,7 +58,7 @@ router.get("/:school/school", (req,res) => {
 }) 
 
 
-// get shchool houeses 
+// get school houses 
 router.get("/:id/school_houses", (req,res) => {
     const { id } = req.params;
 

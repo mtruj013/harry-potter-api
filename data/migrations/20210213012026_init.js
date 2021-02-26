@@ -4,7 +4,8 @@ exports.up = function(knex) {
     .createTable("schools", tbl => {
         tbl.increments(); // for primary key
         tbl.string("school_name")
-            .notNullable();
+            .notNullable()
+            .unique();
         tbl.string("location")
         tbl.string("headmaster")
     })

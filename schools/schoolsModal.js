@@ -41,17 +41,15 @@ function findSchoolHouses(id) {
 
 function addSchool(school) {
     return db("schools")
-        .insert(school, "id")
+        .insert(school, "*")
 }
 
 
 function updateSchool(changes, id) {
     return db("schools")
-        .where({id}, id)
-        .update(changes)
-        .then(ids => {
-            return findSchoolById(id[0])
-        })
+        .where({id})
+        .update(changes, "*")
+        .then(([school]) => school)
 }
 
 
