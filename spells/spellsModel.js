@@ -34,10 +34,8 @@ function addSpell(spell) {
 function updateSpell(changes, id){
     return db("spells")
         .where({id}, id)
-        .update(changes) 
-        .then(ids => {
-            return findSpellById(id[0])
-        })
+        .update(changes, "*") 
+        .then(([spell]) => spell)
 }
 
 function deleteSpell(id) {

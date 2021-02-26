@@ -66,11 +66,9 @@ function addMemberSpell(member_spell) {
 
 function updateMember(changes, id) {
     return db("members")
-        .where({id}, id)
-        .update(changes)
-        .then(ids => {
-            return findMemberById(id[0])
-        })
+        .where({id})
+        .update(changes, "*")
+        .then(([member]) => member)
 }
 
 function deleteMember(id){

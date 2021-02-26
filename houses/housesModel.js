@@ -33,11 +33,9 @@ function addHouse(house, school_id) {
 
 function updateHouse(changes, id) {
     return db("houses")
-        .where({id}, id)
-        .update(changes)
-        .then(ids => {
-            return findHouseById(id[0])
-        })
+        .where({id})
+        .update(changes, "*")
+        .then(([house]) => house)
 }
 
 function deleteHouse(id) {
