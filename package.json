@@ -6,7 +6,8 @@
   "scripts": {
     "test": "cross-env DB_ENV=testing jest --watch --verbose --runInBand",
     "server": "nodemon index.js",
-    "start": "node index.js"
+    "start": "node index.js",
+    "start:dev": "nodemon fileName.js"
   },
   "repository": {
     "type": "git",
