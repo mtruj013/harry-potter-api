@@ -38,6 +38,10 @@ module.exports = {
   production: {
     client: "pg",
     connection: process.env.DATABASE_URL,
+    ssl: {
+          rejectUnauthorized: false
+
+    },
     // connection: {
     //   host: process.env.DB_HOST,
     //   port: 5432,
