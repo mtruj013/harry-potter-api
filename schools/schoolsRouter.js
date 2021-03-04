@@ -12,7 +12,7 @@ router.get("/", (req,res) => {
     })
     .catch(er => {
         res.status(500)
-        .json({ message: "Unable to find schools" })
+        .json(er)
     })
 })
 
